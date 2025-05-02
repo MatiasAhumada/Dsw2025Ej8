@@ -6,10 +6,10 @@ public class CuentaBancaria
     private string _numero;
     private decimal _saldo;
     private Estado _estado;
-    private decimal _tasaDeInteres;
-    private decimal _limiteDeDescubierto;
     private decimal _comision;
     private string[] _titulares;
+    public decimal TasaDeInteres { get; set; }
+    public decimal LimiteDeDescubierto { get; set; }
 
     public CuentaBancaria(string numero, decimal saldo, TipoCuenta tipo, string[] titulares)
     {
