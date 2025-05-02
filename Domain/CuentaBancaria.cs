@@ -8,8 +8,8 @@ public class CuentaBancaria
     private Estado _estado;
     private decimal _comision;
     private string[] _titulares;
-    public decimal TasaDeInteres { get; set; }
-    public decimal LimiteDeDescubierto { get; set; }
+    public decimal _tasaDeInteres { get; set; }
+    public decimal _limiteDeDescubierto { get; set; }
 
     public CuentaBancaria(string numero, decimal saldo, TipoCuenta tipo, string[] titulares)
     {
@@ -101,7 +101,7 @@ public class CuentaBancaria
         }
         else if (_tipo == TipoCuenta.CuentaCorriente)
         {
-            if (_saldo - monto >= -LimiteDeDescubierto)
+            if (_saldo - monto >= -_limiteDeDescubierto)
             {
                 _saldo -= monto;
             }
@@ -116,7 +116,7 @@ public class CuentaBancaria
     {
         if (_tipo == TipoCuenta.CajaDeAhorro)
         {
-            _saldo += _saldo * TasaDeInteres;
+            _saldo += _saldo * _tasaDeInteres;
         }
     }
 }
