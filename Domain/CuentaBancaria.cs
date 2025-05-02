@@ -89,7 +89,7 @@ public class CuentaBancaria
             throw new MontoNoValidoException();
 
         if (_estado != Estado.Activa)
-            throw new CuentaNoActivaException(_estado.ToString());
+            throw new CuentaNoActivaException(_estado);
 
         if (_tipo == TipoCuenta.CajaDeAhorro)
         {
@@ -105,9 +105,23 @@ public class CuentaBancaria
 
     public void Retirar(decimal monto)
     {
+        if (monto <= 0)
+            throw new MontoNoValidoException();
+
+        if (_estado != Estado.Activa)
+            throw new CuentaNoActivaException(_estado);
+
         if (_tipo == TipoCuenta.CajaDeAhorro)
         {
-            _saldo -= monto;
+            if (_saldo >= monto)
+            {
+                _saldo -= monto;
+            }
+            else
+            {
+                _estado = Estado.Suspendida;
+                throw new SaldoInsuficienteException();
+            }
         }
         else if (_tipo == TipoCuenta.CuentaCorriente)
         {
@@ -115,12 +129,13 @@ public class CuentaBancaria
             {
                 _saldo -= monto;
             }
-            if (_saldo < 0)
+            else
             {
                 _estado = Estado.Suspendida;
+                throw new SaldoInsuficienteException();
             }
         }
-    
+
     }
 
     public void AplicarInteres()
