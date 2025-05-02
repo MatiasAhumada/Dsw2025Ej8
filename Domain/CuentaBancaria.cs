@@ -1,4 +1,7 @@
-﻿namespace Dsw2025Ej8.Domain;
+﻿using static Dsw2025Ej8.Domain.Excepciones;
+using System;
+
+namespace Dsw2025Ej8.Domain;
 
 public class CuentaBancaria
 {
@@ -82,16 +85,23 @@ public class CuentaBancaria
 
     public void Depositar(decimal monto)
     {
+        if (monto <= 0)
+            throw new MontoNoValidoException();
+
+        if (_estado != Estado.Activa)
+            throw new CuentaNoActivaException(_estado.ToString());
+
         if (_tipo == TipoCuenta.CajaDeAhorro)
         {
             _saldo += monto;
         }
         else if (_tipo == TipoCuenta.CuentaCorriente)
         {
-            monto -= monto * _comision;
-            _saldo += monto;
+            decimal montoConDescuento = monto - (monto * _comision);
+            _saldo += montoConDescuento;
         }
     }
+
 
     public void Retirar(decimal monto)
     {
@@ -110,6 +120,7 @@ public class CuentaBancaria
                 _estado = Estado.Suspendida;
             }
         }
+    
     }
 
     public void AplicarInteres()
