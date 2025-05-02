@@ -4,13 +4,13 @@ using static Dsw2025Ej8.Domain.Excepciones;
 
 namespace Dsw2025Ej8.Domain;
 
-    public class CuentaCorriente : CuentaBancaria
-    {
-    public decimal _limiteDeDescubierto {  get; set; }
-    public decimal _comision {  get; set; }
-    
-    public CuentaCorriente(string numero,decimal saldo, string[] titulares, decimal comision, decimal limite)
-        :base(numero,saldo,titulares)
+public class CuentaCorriente : CuentaBancaria
+{
+    public decimal _limiteDeDescubierto { get; set; }
+    public decimal _comision { get; set; }
+
+    public CuentaCorriente(string numero, decimal saldo, string[] titulares, decimal comision, decimal limite)
+        : base(numero, saldo, titulares, tipo: TipoCuenta.CuentaCorriente)
     {
         _comision = comision;
         _limiteDeDescubierto = limite;
@@ -18,13 +18,18 @@ namespace Dsw2025Ej8.Domain;
     public override void Depositar(decimal monto)
     {
         if (monto <= 0)
+        {
             throw new MontoNoValido();
-
-        if (_estado != Estado.Activa)
+        }
+        else if (_estado != Estado.Activa)
+        {
             throw new CuentaNoActiva(_estado);
-
-        decimal montoConDescuento = monto * (1 - _comision);
-        _saldo += montoConDescuento;
+        }
+        else
+        {
+            decimal montoConDescuento = monto * (1 - (_comision/100));
+            _saldo += montoConDescuento;
+        }
     }
     public override void Retirar(decimal monto)
     {
@@ -43,6 +48,10 @@ namespace Dsw2025Ej8.Domain;
             _estado = Estado.Suspendida;
             throw new SaldoInsuficiente();
         }
+    }
+    public override void Mostrar()
+    {
+        Console.WriteLine($"\nNumero de Cuenta: {_numero}\nTipo de Cuenta: {_tipo}\nSaldo de Cuenta: {_saldo}");
     }
 }
 

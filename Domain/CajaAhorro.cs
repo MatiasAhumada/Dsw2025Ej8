@@ -8,7 +8,7 @@ namespace Dsw2025Ej8.Domain;
         public decimal _tasaDeInteres {  get; set; }
 
         public CajaAhorro(string numero,decimal saldo, string[] titulares,decimal tasaInteres)
-        :base(numero,saldo,titulares)
+        :base(numero,saldo,titulares,tipo:TipoCuenta.CajaDeAhorro)
         {
             _tasaDeInteres = tasaInteres;
         }
@@ -39,6 +39,10 @@ namespace Dsw2025Ej8.Domain;
             _estado = Estado.Suspendida;
             throw new SaldoInsuficiente();
         }
+    }
+    public override void Mostrar()
+    {
+        Console.WriteLine($"\nNumero de Cuenta: {_numero}\nTipo de Cuenta: {_tipo}\nSaldo de Cuenta: {_saldo}");
     }
     public override void AplicarInteres()
     {
