@@ -11,24 +11,24 @@ namespace Dsw2025Ej8.Domain
         public class MontoNoValido : Exception
         {
             public MontoNoValido()
-                : base("El monto ingresado no es válido para la operación solicitada")
             {
+                Console.WriteLine(" El monto ingresado no es válido para la operación solicitada");
             }
         }
 
         public class CuentaNoActiva : Exception
         {
             public CuentaNoActiva(Estado estado)
-                : base($"No se puede operar con la cuenta {estado.ToString()}")
             {
+                Console.WriteLine($"No se puede operar con la cuenta {estado.ToString()}");
             }
         }
 
         public class SaldoInsuficiente : Exception
         {
             public SaldoInsuficiente()
-                : base("La cuenta no cuenta con saldo para la operación solicitada. Fue suspendida.")
             {
+                Console.WriteLine("La cuenta no cuenta con saldo para la operación solicitada. Fue suspendida.");
             }
         }
     }
