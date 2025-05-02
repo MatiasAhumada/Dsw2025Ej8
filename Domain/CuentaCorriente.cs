@@ -44,5 +44,9 @@ namespace Dsw2025Ej8.Domain;
             throw new SaldoInsuficiente();
         }
     }
+    public override void Mostrar()
+    {
+        Console.WriteLine($"\nNumero de Cuenta: {_numero}\nTipo de Cuenta: {_tipo}\nSaldo de Cuenta: {_saldo}");
+    }
 }
 

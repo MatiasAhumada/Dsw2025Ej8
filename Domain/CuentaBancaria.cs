@@ -21,5 +21,6 @@ public abstract class CuentaBancaria
     public abstract void Depositar(decimal monto);
     public abstract void Retirar(decimal monto);
     public virtual void AplicarInteres() { }
-   
+
+    public virtual void Mostrar() { }
 }

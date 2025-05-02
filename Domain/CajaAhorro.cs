@@ -40,6 +40,10 @@ namespace Dsw2025Ej8.Domain;
             throw new SaldoInsuficiente();
         }
     }
+    public override void Mostrar()
+    {
+        Console.WriteLine($"\nNumero de Cuenta: {this._numero}\nTipo de Cuenta: {this._tipo}\nSaldo de Cuenta: {this._saldo}");
+    }
     public override void AplicarInteres()
     {
         _saldo += _saldo * _tasaDeInteres;
