@@ -34,8 +34,8 @@ namespace Dsw2025Ej8
             try
             {
                 CA1.Depositar(86238);
-                CA1.AplicarInteres();
-                CA1.Retirar(10000);
+                CA1.Retirar(100000000);
+                CA1.AplicarInteres(); 
 
             }
             catch (Exception ex)
@@ -45,15 +45,18 @@ namespace Dsw2025Ej8
             try
             {
                 CA2.Depositar(67812);
-                CA2.Retirar(1500000);
                 CA2.AplicarInteres();
+                CA2.Retirar(15000000);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
 
-            // Console.WriteLine($"Saldo final: {CC1._saldo}");
+             Console.WriteLine($"Saldo final: {CC1._saldo}");
+             Console.WriteLine($"Saldo final: {CC2._saldo}");
+             Console.WriteLine($"Saldo final: {CA1._saldo}");
+             Console.WriteLine($"Saldo final: {CA2._saldo}");
         }
     }
 }
