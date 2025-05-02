@@ -101,7 +101,7 @@ public class CuentaBancaria
         }
         else if (_tipo == TipoCuenta.CuentaCorriente)
         {
-            if (_saldo - monto >= -_limiteDeDescubierto)
+            if (_saldo - monto >= -LimiteDeDescubierto)
             {
                 _saldo -= monto;
             }
@@ -116,7 +116,7 @@ public class CuentaBancaria
     {
         if (_tipo == TipoCuenta.CajaDeAhorro)
         {
-            _saldo += _saldo * _tasaDeInteres;
+            _saldo += _saldo * TasaDeInteres;
         }
     }
 }
