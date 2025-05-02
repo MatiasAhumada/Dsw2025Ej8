@@ -1,5 +1,7 @@
 ﻿
 
+using static Dsw2025Ej8.Domain.Excepciones;
+
 namespace Dsw2025Ej8.Domain;
 
     public class CuentaCorriente : CuentaBancaria
@@ -15,17 +17,31 @@ namespace Dsw2025Ej8.Domain;
     }
     public override void Depositar(decimal monto)
     {
-        _saldo += monto - (monto * _comision);
+        if (monto <= 0)
+            throw new MontoNoValido();
+
+        if (_estado != Estado.Activa)
+            throw new CuentaNoActiva(_estado);
+
+        decimal montoConDescuento = monto * (1 - _comision);
+        _saldo += montoConDescuento;
     }
     public override void Retirar(decimal monto)
     {
-        if(_saldo-monto >= -_limiteDeDescubierto)
+        if (monto <= 0)
+            throw new MontoNoValido();
+
+        if (_estado != Estado.Activa)
+            throw new CuentaNoActiva(_estado);
+
+        if (_saldo - monto >= -_limiteDeDescubierto)
         {
             _saldo -= monto;
         }
-        if (_saldo < 0)
+        else
         {
             _estado = Estado.Suspendida;
+            throw new SaldoInsuficiente();
         }
     }
 }
