@@ -1,4 +1,7 @@
-﻿namespace Dsw2025Ej8.Domain;
+﻿using static Dsw2025Ej8.Domain.Excepciones;
+using System;
+
+namespace Dsw2025Ej8.Domain;
 
 public abstract class CuentaBancaria
 {
