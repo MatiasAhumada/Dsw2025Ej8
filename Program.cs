@@ -52,6 +52,10 @@ namespace Dsw2025Ej8
             {
                 Console.WriteLine(ex.ToString());
             }
+            CA1.Mostrar();
+            CA2.Mostrar();
+            CC1.Mostrar();
+            CC2.Mostrar();
 
              Console.WriteLine($"Saldo final: {CC1._saldo}");
              Console.WriteLine($"Saldo final: {CC2._saldo}");

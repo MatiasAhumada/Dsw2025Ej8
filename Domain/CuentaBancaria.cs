@@ -11,15 +11,17 @@ public abstract class CuentaBancaria
     public Estado _estado { get; set; } = Estado.Activa;
     public string[] _titulares {get;}
 
-    protected CuentaBancaria(string numero, decimal saldo, string[] titulares)
+    protected CuentaBancaria(string numero, decimal saldo, string[] titulares,TipoCuenta tipo)
     {
         _numero = numero;
         _saldo = saldo;
         _titulares = titulares;
+        _tipo = tipo;
     }
   
     public abstract void Depositar(decimal monto);
     public abstract void Retirar(decimal monto);
+    public abstract void Mostrar();
     public virtual void AplicarInteres() { }
    
 }

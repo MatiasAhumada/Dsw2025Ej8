@@ -10,7 +10,7 @@ public class CuentaCorriente : CuentaBancaria
     public decimal _comision { get; set; }
 
     public CuentaCorriente(string numero, decimal saldo, string[] titulares, decimal comision, decimal limite)
-        : base(numero, saldo, titulares)
+        : base(numero, saldo, titulares, tipo: TipoCuenta.CuentaCorriente)
     {
         _comision = comision;
         _limiteDeDescubierto = limite;
@@ -43,6 +43,10 @@ public class CuentaCorriente : CuentaBancaria
             _estado = Estado.Suspendida;
             throw new SaldoInsuficiente();
         }
+    }
+    public override void Mostrar()
+    {
+        Console.WriteLine($"Tipo de cuenta: {_tipo}");
     }
 }
 
