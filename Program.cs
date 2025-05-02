@@ -16,12 +16,12 @@ namespace Dsw2025Ej8
             {
                 CC1._estado = Estado.Inactiva;
                 CC1.Retirar(500);
-                CC1.Depositar(-100);
+                CC1.Depositar(100);
                 CC1.AplicarInteres();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine($"{ex.Message}\n");
             }
             try
             {
@@ -31,37 +31,33 @@ namespace Dsw2025Ej8
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine($"{ex.Message}\n");
             }
             try
             {
                 CA1.Depositar(86238);
-                CA1.AplicarInteres();
-                CA1.Retirar(10000);
+                CA1.Retirar(100000000);
+                CA1.AplicarInteres(); 
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine($"{ex.Message}\n");
             }
             try
             {
                 CA2.Depositar(67812);
-                CA2.Retirar(1500000);
                 CA2.AplicarInteres();
-
+                CA2.Retirar(1599);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine($"{ex.Message}\n");
             }
-
             CC1.Mostrar();
             CC2.Mostrar();
             CA1.Mostrar();
             CA2.Mostrar();
-            // Console.WriteLine($"Saldo final: {CC1._saldo}");
-
         }
     }
 }
