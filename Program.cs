@@ -46,7 +46,7 @@ namespace Dsw2025Ej8
             }
             try
             {
-                CA2.Depositar(67812);
+                CA2.Depositar(-67812);
                 CA2.AplicarInteres();
                 CA2.Retirar(1599);
             }
